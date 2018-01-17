@@ -11,7 +11,8 @@
 # **************************************************************************** #
 NAME = libft.a
 
-SRC = btree_apply_infix.c \
+SRC = bsn.c \
+	  btree_apply_infix.c \
 	  btree_apply_prefix.c \
 	  btree_apply_sufix.c \
 	  btree_create_node.c \
@@ -24,6 +25,7 @@ SRC = btree_apply_infix.c \
 	  ft_btoi.c \
 	  ft_bzero.c \
 	  ft_htoi.c \
+	  ft_is_number.c \
 	  ft_isalnum.c \
 	  ft_isalpha.c \
 	  ft_isascii.c \
@@ -84,6 +86,7 @@ SRC = btree_apply_infix.c \
 	  ft_putstr.c \
 	  ft_putstr_fd.c \
 	  ft_putstr_color.c \
+	  ft_read_entry.c \
 	  ft_round.c \
 	  ft_set_array.c \
 	  ft_str_down.c \

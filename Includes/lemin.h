@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:09:44 by proso             #+#    #+#             */
-/*   Updated: 2018/01/04 20:26:54 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/16 23:28:16 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define ERR_ROOM	51
 # define ERR_TUBE	52
 # define ERR_MALLOC	53
+# define STD_ROOM	60
+# define START_ROOM	61
+# define END_ROOM	62
 
 # include "libft.h"
 
@@ -45,5 +48,6 @@ void			free_all(t_data *info);
 int				print_error(t_data *info, int err);
 int				get_entry(t_data *info);
 int				get_rooms(t_data *info);
+int				get_tubes(t_data *info);
 
 #endif

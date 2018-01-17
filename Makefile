@@ -6,7 +6,7 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2018/01/04 19:43:29 by proso            ###   ########.fr        #
+#    Updated: 2018/01/16 23:28:00 by proso            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = lemin
 SRC = free_all.c \
 	  get_entry.c \
 	  get_rooms.c \
+	  get_tubes.c \
 	  lemin.c \
 	  print_error.c
 

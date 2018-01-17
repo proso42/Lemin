@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   bsn.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 18:08:59 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 01:13:10 by proso            ###   ########.fr       */
+/*   Created: 2018/01/16 23:49:31 by proso             #+#    #+#             */
+/*   Updated: 2018/01/16 23:50:30 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/lemin.h"
+#include "Includes/libft.h"
 
-void	free_all(t_data *info)
+void	bsn(int nb)
 {
-	t_list	*current;
-	t_list	*prev;
-
-	current = info->room_list;
-	prev = NULL;
-	while (current)
+	while (nb > 0)
 	{
-		ft_strdel(&((t_room*)current->data)->name);
-		prev = current;
-		current = current->next;
-		free(prev);
+		write(1, "\n", 1);
+		nb--;
 	}
-	ft_strdel(&info->line);
 }

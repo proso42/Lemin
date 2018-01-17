@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   ft_is_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 18:08:59 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 01:13:10 by proso            ###   ########.fr       */
+/*   Created: 2018/01/16 23:15:28 by proso             #+#    #+#             */
+/*   Updated: 2018/01/17 02:01:54 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/lemin.h"
+#include "Includes/libft.h"
 
-void	free_all(t_data *info)
+int		ft_is_number(char *str)
 {
-	t_list	*current;
-	t_list	*prev;
+	int		i;
 
-	current = info->room_list;
-	prev = NULL;
-	while (current)
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
 	{
-		ft_strdel(&((t_room*)current->data)->name);
-		prev = current;
-		current = current->next;
-		free(prev);
+		if ((str[i] == '-' && i > 0) || (!ft_isdigit(str[i]) && str[i] != '-'))
+			return (0);
+		i++;
 	}
-	ft_strdel(&info->line);
+	return (1);
 }

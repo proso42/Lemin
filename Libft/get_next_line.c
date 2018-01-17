@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:40:51 by proso             #+#    #+#             */
-/*   Updated: 2018/01/04 01:05:09 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/17 00:26:50 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int						get_line(char **line, t_line **list)
 		ft_strdel(&(*list)->stock);
 		if (i == 0)
 		{
-			(*list)->fd = 0;
+			(*list)->fd = -1;
 			return (0);
 		}
 	}
@@ -95,6 +95,8 @@ int						my_realloc(const int fd, t_line **list, t_line **ptr)
 		ft_strdel(&(stock));
 		stock = ft_strjoin(prev, buffer);
 		ft_strdel(&prev);
+		if (ft_strchr(stock, '\n') && fd == 0)
+			break ;
 	}
 	*ptr = new_line(list, fd, stock);
 	ft_strdel(&(stock));

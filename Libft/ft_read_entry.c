@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_all.c                                         :+:      :+:    :+:   */
+/*   ft_read_entry.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 18:08:59 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 01:13:10 by proso            ###   ########.fr       */
+/*   Created: 2018/01/17 00:29:17 by proso             #+#    #+#             */
+/*   Updated: 2018/01/17 01:09:55 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/lemin.h"
+#include "Includes/libft.h"
 
-void	free_all(t_data *info)
+void	ft_read_entry(char **line)
 {
-	t_list	*current;
-	t_list	*prev;
+	char	buff[10];
+	char	*tmp;
+	int		ret;
 
-	current = info->room_list;
-	prev = NULL;
-	while (current)
+	tmp = NULL;
+	while ((ret = read(0, buff, 1)))
 	{
-		ft_strdel(&((t_room*)current->data)->name);
-		prev = current;
-		current = current->next;
-		free(prev);
+		if (buff[0] == '\n')
+			break ;
+		tmp = ft_strjoinfree(tmp, buff, 1);
 	}
-	ft_strdel(&info->line);
+	if (tmp == NULL)
+	{
+		*line = NULL;
+		return ;
+	}
+	*line = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }

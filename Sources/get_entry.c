@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:51:24 by proso             #+#    #+#             */
-/*   Updated: 2018/01/04 20:27:42 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/17 00:50:15 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int	get_nb_ant(t_data *info)
 {
 	long	nb;
 
-	get_next_line(0, &info->line);
+	ft_read_entry(&info->line);
 	nb = 0;
-	while ((info->line)[nb])
+	while ((info->line)[nb] != '\0')
 	{
 		if (!ft_isdigit(info->line[nb]))
 			return (0);
@@ -34,9 +34,14 @@ static int	get_nb_ant(t_data *info)
 
 int			get_entry(t_data *info)
 {
+	ft_printf("{bold}{green}Les fourmis :{res}\n");
 	if (!get_nb_ant(info))
-		return(print_error(info, ERR_NB_ANT));
+		return (print_error(info, ERR_NB_ANT));
+	ft_printf("{bold}{green}Les salles :{res}\n");
 	if (!get_rooms(info))
 		return (print_error(info, ERR_ROOM));
+	ft_printf("{bold}{green}Les tubes :{res}\n");
+	if (!get_tubes(info))
+		return (print_error(info, ERR_TUBE));
 	return (1);
 }

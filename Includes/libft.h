@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 08:27:04 by proso             #+#    #+#             */
-/*   Updated: 2018/01/03 22:56:11 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/17 00:33:47 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef	struct		s_list
 	struct s_list	*prev;
 }					t_list;
 
+void				bsn(int nb);
 t_btree				*btree_create_node(void *item);
 int					btree_level_count(t_btree *root);
 void				btree_apply_prefix(t_btree *root, void (*applyf)(void *));
@@ -62,6 +63,7 @@ long				ft_atol(char const *str);
 int					ft_btoi(char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_htoi(char *str);
+int					ft_is_number(char *str);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -123,6 +125,7 @@ void				ft_putnbr_endl(int n);
 void				ft_putstr(char *s);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putstr_color(char *str, int color);
+void				ft_read_entry(char **line);
 char				*ft_realloc(char *str, int size);
 int					ft_round(double x);
 char				**ft_set_array(int nb, ...);
