@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 13:51:04 by proso             #+#    #+#             */
-/*   Updated: 2017/12/14 03:28:07 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/17 18:23:43 by i                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_fill_tab(char **tab, char const *s, char c)
 				s++;
 			}
 			tab[i][j] = '\0';
+			ft_printf("{bold}{green}%s{res}\n", tab[i]);
 			j = 0;
 			i++;
 		}

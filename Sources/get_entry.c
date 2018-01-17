@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:51:24 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 00:50:15 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/17 17:17:45 by i                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_nb_ant(t_data *info)
 		nb++;
 	}
 	nb = ft_atol(info->line);
-	if (nb > 2147483647)
+	if (nb > 2147483647 || ft_strlen(info->line) > 11)
 		return (0);
 	info->ants = nb;
 	ft_strdel(&info->line);

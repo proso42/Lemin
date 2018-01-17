@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 19:42:14 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 02:00:27 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/17 18:02:14 by i                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static int	create_start_room(t_data *info)
 		return (0);
 	ft_strdel(&info->line);
 	ft_read_entry(&info->line);
+	if (!info->line)
+		return (0);
 	if (!(room = (t_room*)malloc(sizeof(t_room))))
 		print_error(info, ERR_MALLOC);
 	if (!get_datas_room(info, room))
@@ -73,6 +75,8 @@ static int	create_end_room(t_data *info)
 		return (0);
 	ft_strdel(&info->line);
 	ft_read_entry(&info->line);
+	if (!info->line)
+		return (0);
 	if (!(room = (t_room*)malloc(sizeof(t_room))))
 		print_error(info, ERR_MALLOC);
 	if (!get_datas_room(info, room))
@@ -92,6 +96,8 @@ int			get_rooms(t_data *info)
 	while (1)
 	{
 		ft_read_entry(&info->line);
+		if (!info->line)
+			return (1);
 		if (!ft_strchr(info->line, ' ') && (info->line)[0] != '#')
 			return (1);
 		else if (!ft_strcmp("##start", info->line))
