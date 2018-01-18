@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 19:42:14 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 18:02:14 by i                ###   ########.fr       */
+/*   Updated: 2018/01/18 19:01:00 by i                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int	create_std_room(t_data *info)
 {
 	t_room	*room;
 
+	if (info->line[0] == '#')
+		return (1);
 	if (!(room = (t_room*)malloc(sizeof(t_room))))
 		print_error(info, ERR_MALLOC);
 	if (!get_datas_room(info, room))
@@ -98,14 +100,15 @@ int			get_rooms(t_data *info)
 		ft_read_entry(&info->line);
 		if (!info->line)
 			return (1);
+		if (!ft_strchr(info->line, ' ') && !ft_strchr(info->line, '-')
+																											&& info->line[0] != '#')
+			return (0);
 		if (!ft_strchr(info->line, ' ') && (info->line)[0] != '#')
 			return (1);
 		else if (!ft_strcmp("##start", info->line))
 			ret = create_start_room(info);
 		else if (!ft_strcmp("##end", info->line))
 			ret = create_end_room(info);
-		else if (info->line[0] == '#')
-			ret = 1;
 		else
 			ret = create_std_room(info);
 		ft_strdel(&info->line);

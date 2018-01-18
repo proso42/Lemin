@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 23:27:16 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 18:13:57 by i                ###   ########.fr       */
+/*   Updated: 2018/01/18 18:22:42 by i                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ static t_room	*find_room(t_list *room_list, char *name)
 {
 	t_list	*current;
 
-	ft_printf("{bold}{cyan}%s{res}\n", name);
 	current = room_list;
 	while (current)
 	{
-		ft_printf("{bold}{yellow}%s{res}\n", ((t_room*)current->data)->name);
 		if (!ft_strcmp(name, ((t_room*)current->data)->name))
 			return (current->data);
 		current = current->next;
@@ -57,7 +55,6 @@ int				get_tubes(t_data *info)
 		tab = ft_strsplit(info->line, '-');
 		if (tab[2])
 			return (0);
-		//ft_printf("%s | %s\n", tab[0], tab[1]);
 		if (!(join_rooms(info, tab[0], tab[1])))
 			return (0);
 		ft_del_tab(tab);
