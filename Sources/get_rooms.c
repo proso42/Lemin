@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 19:42:14 by proso             #+#    #+#             */
-/*   Updated: 2018/01/18 19:01:00 by i                ###   ########.fr       */
+/*   Updated: 2018/01/19 02:43:25 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	create_std_room(t_data *info)
 	if (!get_datas_room(info, room))
 		return (0);
 	room->type = STD_ROOM;
-	room->empty = 1;
+	room->nb = 0;
 	room->tubes = NULL;
 	ft_push_back(&info->room_list, room);
 	return (1);
@@ -63,7 +63,7 @@ static int	create_start_room(t_data *info)
 		return (0);
 	room->type = START_ROOM;
 	info->start_ok = 1;
-	room->empty = 1;
+	room->nb = info->ants;
 	room->tubes = NULL;
 	ft_push_back(&info->room_list, room);
 	return (1);
@@ -85,7 +85,7 @@ static int	create_end_room(t_data *info)
 		return (0);
 	room->type = END_ROOM;
 	info->end_ok = 1;
-	room->empty = 1;
+	room->nb = 0;
 	room->tubes = NULL;
 	ft_push_back(&info->room_list, room);
 	return (1);
@@ -101,7 +101,7 @@ int			get_rooms(t_data *info)
 		if (!info->line)
 			return (1);
 		if (!ft_strchr(info->line, ' ') && !ft_strchr(info->line, '-')
-																											&& info->line[0] != '#')
+														&& info->line[0] != '#')
 			return (0);
 		if (!ft_strchr(info->line, ' ') && (info->line)[0] != '#')
 			return (1);
