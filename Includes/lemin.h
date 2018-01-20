@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 17:09:44 by proso             #+#    #+#             */
-/*   Updated: 2018/01/19 02:42:15 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/20 02:17:40 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define ERR_END		55
 # define ERR_START		56
 # define ERR_WAY		57
+# define ERR_COORD		58
+# define ERR_NAME		59
 # define STD_ROOM		60
 # define START_ROOM		61
 # define END_ROOM		62
@@ -38,9 +40,14 @@ typedef struct	s_room
 	t_list		*tubes;
 }				t_room;
 
+typedef struct	s_ant
+{
+	int			id;
+	t_room		*pos;
+}				t_ant;
+
 typedef struct	s_data
 {
-	t_list		*room_list;
 	char		*line;
 	int			ants;
 	int			start_ok;
@@ -50,6 +57,9 @@ typedef struct	s_data
 	t_room		*way;
 	t_list		*way_list;
 	t_list		*checked_room_list;
+	t_list		*room_list;
+	t_list		*ant_list;
+	t_list		*data_list;
 }				t_data;
 
 void			free_all(t_data *info);
@@ -58,6 +68,7 @@ int				get_entry(t_data *info);
 int				get_rooms(t_data *info);
 int				get_tubes(t_data *info);
 int				find_way(t_data *info);
+void			gen_ants(t_data *info);
 void			move_ants(t_data *info);
 
 #endif

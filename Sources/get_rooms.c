@@ -6,13 +6,13 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 19:42:14 by proso             #+#    #+#             */
-/*   Updated: 2018/01/19 02:43:25 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/20 02:47:57 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/lemin.h"
 
-static int	get_datas_room(t_data *info, t_room *room)
+static int	get_datas_room(t_data *info, t_room **room)
 {
 	char	**tab;
 
@@ -21,11 +21,12 @@ static int	get_datas_room(t_data *info, t_room *room)
 														!ft_is_number(tab[2]))
 	{
 		ft_del_tab(tab);
+		free(*room);
 		return (0);
 	}
-	room->name = ft_strdup(tab[0]);
-	room->x = ft_atoi(tab[1]);
-	room->y = ft_atoi(tab[2]);
+	((t_room*)*(room))->name = ft_strdup(tab[0]);
+	((t_room*)*(room))->x = ft_atoi(tab[1]);
+	((t_room*)*(room))->y = ft_atoi(tab[2]);
 	ft_del_tab(tab);
 	return (1);
 }
@@ -38,7 +39,7 @@ static int	create_std_room(t_data *info)
 		return (1);
 	if (!(room = (t_room*)malloc(sizeof(t_room))))
 		print_error(info, ERR_MALLOC);
-	if (!get_datas_room(info, room))
+	if (!get_datas_room(info, &room))
 		return (0);
 	room->type = STD_ROOM;
 	room->nb = 0;
@@ -57,9 +58,10 @@ static int	create_start_room(t_data *info)
 	ft_read_entry(&info->line);
 	if (!info->line)
 		return (0);
+	ft_push_back(&info->data_list, ft_strdup(info->line));
 	if (!(room = (t_room*)malloc(sizeof(t_room))))
 		print_error(info, ERR_MALLOC);
-	if (!get_datas_room(info, room))
+	if (!get_datas_room(info, &room))
 		return (0);
 	room->type = START_ROOM;
 	info->start_ok = 1;
@@ -79,9 +81,10 @@ static int	create_end_room(t_data *info)
 	ft_read_entry(&info->line);
 	if (!info->line)
 		return (0);
+	ft_push_back(&info->data_list, ft_strdup(info->line));
 	if (!(room = (t_room*)malloc(sizeof(t_room))))
 		print_error(info, ERR_MALLOC);
-	if (!get_datas_room(info, room))
+	if (!get_datas_room(info, &room))
 		return (0);
 	room->type = END_ROOM;
 	info->end_ok = 1;
@@ -100,6 +103,7 @@ int			get_rooms(t_data *info)
 		ft_read_entry(&info->line);
 		if (!info->line)
 			return (1);
+		ft_push_back(&info->data_list, ft_strdup(info->line));
 		if (!ft_strchr(info->line, ' ') && !ft_strchr(info->line, '-')
 														&& info->line[0] != '#')
 			return (0);
@@ -115,7 +119,6 @@ int			get_rooms(t_data *info)
 		if (!ret)
 			return (0);
 	}
-	if (info->line)
-		ft_strdel(&info->line);
+	ft_strdel(&info->line);
 	return (1);
 }

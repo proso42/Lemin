@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 08:27:04 by proso             #+#    #+#             */
-/*   Updated: 2018/01/17 00:34:05 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/20 00:09:32 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_list_last(t_list *begin_list);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_push_back(t_list **begin_list, void *str);
-t_list				*ft_push_front(t_list **begin_list, char *str);
+t_list				*ft_push_front(t_list **begin_list, void *item);
 void				ft_remove_list(t_list **begin_list);
 void				ft_reverse_list(t_list **begin_list);
 t_list				*ft_dup_list(t_list *begin_list);

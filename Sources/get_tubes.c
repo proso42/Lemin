@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 23:27:16 by proso             #+#    #+#             */
-/*   Updated: 2018/01/18 18:22:42 by i                ###   ########.fr       */
+/*   Updated: 2018/01/20 03:22:47 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,17 @@ int				get_tubes(t_data *info)
 			ft_read_entry(&info->line);
 		if (!info->line)
 			return (1);
-		tab = ft_strsplit(info->line, '-');
-		if (tab[2])
-			return (0);
-		if (!(join_rooms(info, tab[0], tab[1])))
-			return (0);
-		ft_del_tab(tab);
+		ft_push_back(&info->data_list, ft_strdup(info->line));
+		if (info->line[0] != '#')
+		{
+			tab = ft_strsplit(info->line, '-');
+			if (tab[2] || !(join_rooms(info, tab[0], tab[1])))
+			{
+				ft_del_tab(tab);
+				return (0);
+			}
+			ft_del_tab(tab);
+		}
 		ft_strdel(&info->line);
 	}
 	return (1);

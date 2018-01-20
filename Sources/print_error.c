@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:06:11 by proso             #+#    #+#             */
-/*   Updated: 2018/01/19 00:35:39 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/20 02:56:55 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int		print_error(t_data *info, int err)
 		ft_dprintf(2, "{bold}{red}Error : no room !{res}\n");
 	else if (err == ERR_WAY)
 		ft_dprintf(2, "{bold}{red}No way to escape !{res}\n");
+	else if (err == ERR_COORD)
+		ft_dprintf(2, "{bold}{red}Some rooms have the same position !{res}\n");
+	else if (err == ERR_NAME)
+		ft_dprintf(2, "{bold}{red}Some rooms have the same name !{res}\n");
 	else if (err == ERR_MALLOC)
 	{
 		ft_dprintf(2, "{bold}{red}Fail of malloc function !{res}\n");

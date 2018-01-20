@@ -6,24 +6,24 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2018/01/19 02:40:04 by proso            ###   ########.fr        #
+#    Updated: 2018/01/20 02:26:49 by proso            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lemin
 
-SRC = find_way.c \
+SRC = ants.c \
+	  find_way.c \
 	  free_all.c \
 	  get_entry.c \
 	  get_rooms.c \
 	  get_tubes.c \
 	  lemin.c \
-	  move_ants.c \
 	  print_error.c
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -fsanitize=address
+FLAGS = -Wall -Werror -Wextra #-fsanitize=address
 
 INCLUDE = Includes/lemin.h
 

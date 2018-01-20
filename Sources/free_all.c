@@ -6,13 +6,28 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:08:59 by proso             #+#    #+#             */
-/*   Updated: 2018/01/19 01:26:26 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/20 03:42:43 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/lemin.h"
 
-void	free_all(t_data *info)
+static void	free_tubes(t_list *list)
+{
+	t_list	*current;
+	t_list	*prev;
+
+	current = list;
+	prev = NULL;
+	while (current)
+	{
+		prev = current;
+		current = current->next;
+		free(prev);
+	}
+}
+
+static void	free_rooms(t_data *info)
 {
 	t_list	*current;
 	t_list	*prev;
@@ -22,19 +37,36 @@ void	free_all(t_data *info)
 	while (current)
 	{
 		ft_strdel(&((t_room*)current->data)->name);
+		free_tubes(((t_room*)current->data)->tubes);
 		free(current->data);
 		prev = current;
 		current = current->next;
 		free(prev);
 	}
-	current = info->checked_room_list;
+}
+
+static void	free_ants(t_data *info)
+{
+	t_list	*current;
+	t_list	*prev;
+
+	current = info->ant_list;
 	prev = NULL;
 	while (current)
 	{
 		prev = current;
+		free(current->data);
 		current = current->next;
 		free(prev);
 	}
+}
+
+void		free_all(t_data *info)
+{
+	free_rooms(info);
+	free_ants(info);
+	ft_remove_list(&info->checked_room_list);
 	ft_remove_list(&info->way_list);
+	ft_remove_list(&info->data_list);
 	ft_strdel(&info->line);
 }
