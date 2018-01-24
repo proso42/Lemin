@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 19:42:14 by proso             #+#    #+#             */
-/*   Updated: 2018/01/20 02:47:57 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/24 02:50:24 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	create_std_room(t_data *info)
 	room->type = STD_ROOM;
 	room->nb = 0;
 	room->tubes = NULL;
+	room->forbidden = 0;
 	ft_push_back(&info->room_list, room);
 	return (1);
 }
@@ -54,6 +55,7 @@ static int	create_start_room(t_data *info)
 
 	if (info->start_ok)
 		return (0);
+	ft_push_back(&info->data_list, ft_strdup(info->line));
 	ft_strdel(&info->line);
 	ft_read_entry(&info->line);
 	if (!info->line)
@@ -67,6 +69,7 @@ static int	create_start_room(t_data *info)
 	info->start_ok = 1;
 	room->nb = info->ants;
 	room->tubes = NULL;
+	room->forbidden = 1;
 	ft_push_back(&info->room_list, room);
 	return (1);
 }
@@ -77,6 +80,7 @@ static int	create_end_room(t_data *info)
 
 	if (info->end_ok)
 		return (0);
+	ft_push_back(&info->data_list, ft_strdup(info->line));
 	ft_strdel(&info->line);
 	ft_read_entry(&info->line);
 	if (!info->line)
@@ -90,6 +94,7 @@ static int	create_end_room(t_data *info)
 	info->end_ok = 1;
 	room->nb = 0;
 	room->tubes = NULL;
+	room->forbidden = 0;
 	ft_push_back(&info->room_list, room);
 	return (1);
 }
@@ -103,7 +108,6 @@ int			get_rooms(t_data *info)
 		ft_read_entry(&info->line);
 		if (!info->line)
 			return (1);
-		ft_push_back(&info->data_list, ft_strdup(info->line));
 		if (!ft_strchr(info->line, ' ') && !ft_strchr(info->line, '-')
 														&& info->line[0] != '#')
 			return (0);
@@ -115,6 +119,7 @@ int			get_rooms(t_data *info)
 			ret = create_end_room(info);
 		else
 			ret = create_std_room(info);
+		ft_push_back(&info->data_list, ft_strdup(info->line));
 		ft_strdel(&info->line);
 		if (!ret)
 			return (0);

@@ -6,13 +6,14 @@
 #    By: proso <proso@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 13:41:20 by proso             #+#    #+#              #
-#    Updated: 2018/01/20 02:26:49 by proso            ###   ########.fr        #
+#    Updated: 2018/01/24 01:06:29 by proso            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lemin
 
 SRC = ants.c \
+	  find_better_way.c \
 	  find_way.c \
 	  free_all.c \
 	  get_entry.c \
@@ -23,7 +24,7 @@ SRC = ants.c \
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra #-fsanitize=address
+FLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 INCLUDE = Includes/lemin.h
 

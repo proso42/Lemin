@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:02:31 by proso             #+#    #+#             */
-/*   Updated: 2018/01/20 03:51:09 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/24 02:38:53 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	init(t_data *info)
 {
 	info->room_list = NULL;
-	info->checked_room_list = NULL;
 	info->way_list = NULL;
+	info->better_way = NULL;
 	info->way = NULL;
 	info->ant_list = NULL;
 	info->data_list = NULL;
@@ -34,6 +34,9 @@ int			main(void)
 	gen_ants(&info);
 	if (!(find_way(&info)))
 		return (print_error(&info, ERR_WAY));
+	info.end = info.way;
+	info.better_way = ft_dup_list(info.way_list);
+	find_better_way(&info);
 	ft_print_list(info.data_list);
 	bsn(1);
 	move_ants(&info);

@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 00:33:57 by proso             #+#    #+#             */
-/*   Updated: 2018/01/19 02:37:42 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/24 02:41:15 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ static t_room	*choice_room(t_data *info)
 	current = ((t_room*)info->way)->tubes;
 	while (current)
 	{
-		if (ft_list_find(info->checked_room_list,
-												((t_room*)current->data)->name))
+		if (((t_room*)current->data)->forbidden)
 			current = current->next;
 		else
 		{
-			ft_push_back(&info->checked_room_list,
-									ft_strdup(((t_room*)current->data)->name));
+			((t_room*)current->data)->forbidden = 1;
 			return (current->data);
 		}
 	}
@@ -55,11 +53,24 @@ static int		go_room(t_data *info)
 	return (1);
 }
 
+t_room			*search_start(t_data *info)
+{
+	t_list	*current;
+
+	current = info->room_list;
+	while (current)
+	{
+		if (((t_room*)current->data)->type == START_ROOM)
+			return ((t_room*)current->data);
+		current = current->next;
+	}
+	return (NULL);
+}
+
 int				find_way(t_data *info)
 {
-	info->way = info->room_list->data;
-	ft_push_back(&info->checked_room_list,
-							ft_strdup(((t_room*)info->room_list->data)->name));
+	if (!(info->way = search_start(info)))
+		return (0);
 	if (!(go_room(info)))
 		return (0);
 	return (1);

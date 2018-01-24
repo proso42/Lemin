@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dup_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proso <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 18:15:31 by proso             #+#    #+#             */
-/*   Updated: 2017/04/07 11:39:34 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/24 02:33:38 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*ft_dup_list(t_list *begin_list)
 	current = begin_list;
 	while (current)
 	{
-		ft_push_back(&new_list, current->data);
+		ft_push_back(&new_list, ft_strdup(current->data));
 		current = current->next;
 	}
 	return (new_list);

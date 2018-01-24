@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:08:59 by proso             #+#    #+#             */
-/*   Updated: 2018/01/20 03:42:43 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/24 00:59:03 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void		free_all(t_data *info)
 {
 	free_rooms(info);
 	free_ants(info);
-	ft_remove_list(&info->checked_room_list);
 	ft_remove_list(&info->way_list);
 	ft_remove_list(&info->data_list);
 	ft_strdel(&info->line);

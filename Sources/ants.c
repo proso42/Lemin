@@ -6,7 +6,7 @@
 /*   By: proso <proso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 02:39:00 by proso             #+#    #+#             */
-/*   Updated: 2018/01/20 23:20:04 by proso            ###   ########.fr       */
+/*   Updated: 2018/01/24 02:39:38 by proso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			gen_ants(t_data *info)
 		if (!(new_ant = (t_ant*)malloc(sizeof(t_ant))))
 			print_error(info, ERR_MALLOC);
 		new_ant->id = i;
-		new_ant->pos = (t_room*)info->room_list->data;
+		new_ant->pos = search_start(info);
 		ft_push_back(&info->ant_list, new_ant);
 		i++;
 	}
@@ -86,8 +86,8 @@ void			move_ants(t_data *info)
 
 	i = 0;
 	ft_push_front(&info->way_list,
-							ft_strdup(((t_room*)info->room_list->data)->name));
-	while (info->way->nb < info->ants)
+							ft_strdup((search_start(info))->name));
+	while (info->end->nb < info->ants)
 	{
 		if (i)
 			bsn(1);
